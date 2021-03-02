@@ -1,13 +1,22 @@
-import React from 'react'
-import { heroes } from '../../data/heores'
+import React from 'react';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
+import { heroes } from '../../data/heores';
 import { useForm } from '../../hooks/useForm';
 import { HeroCard } from '../heroes/HeroCard';
 
 
-export const SearchScreen = () => {
+export const SearchScreen = ({history}) => {
+
+    const location = useLocation();
+
+    const {q = ''} = queryString.parse(location.search)
+    console.log(q)
+
+    const heroesFilter = heroes;
 
     const [ inputName , handleInputChange] = useForm({
-        searchText: '',
+        searchText: q
     });
     
     
@@ -17,10 +26,11 @@ export const SearchScreen = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(searchText)
+        history.push(`?q=${searchText}`)
     }
 
-    const heroesFilter = heroes;
+    
+
     return (
         <div>
             <h1>Search Screen</h1>
@@ -37,7 +47,7 @@ export const SearchScreen = () => {
                         value={searchText}
                         onChange={handleInputChange}
                         />
-                        <button type="submit" className="btn btn-block m-1 btn-outline-primary">Search</button>
+                        <button type="submit" className="btn btn-block mt-2 btn-outline-primary">Search</button>
                     </form>
                 </div>
                 <div className="col-7">
