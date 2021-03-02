@@ -6,17 +6,17 @@ import {
 } from "react-router-dom"
 import { LoginScreen } from '../components/login/LoginScreen'
 import { Navbar } from '../components/ui/Navbar'
-import { Marvel } from '../components/marvel/Marvel'
+import { DashboardRoutes } from './DashboardRoutes'
 
 export const AppRouter = () => {
 
     return (
         <Router>
             <div>
-                <Navbar/>
+                {/* <Navbar/> */}
                 <Switch>
                     <Route exact path='/login' component={LoginScreen}></Route>
-                    <Route exact path='/' component={Marvel}></Route>
+                    <Route path='/' component={DashboardRoutes}></Route>
                 </Switch>
             </div>
         </Router>
