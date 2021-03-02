@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect, useParams } from 'react-router-dom'
 import { getHeroById } from '../../selectors/getHeroById'
 
-export const HeroScreen = () => {
+export const HeroScreen = ({history}) => {
 
     // const params = useParams();
     // console.log(params.heroeId)
@@ -24,9 +24,35 @@ export const HeroScreen = () => {
         characters
     } = hero;
 
+    const handleReturn = () => {
+
+        if (history.lenght <= 2) {
+            history.push('/')
+        }else{
+            history.goBack();
+        }
+
+    }
+
     return (
-        <div>
-            <h1>Hero Screen</h1>
+        <div className="row mt-5">
+            <div className="col-4">
+                <img className="img-thumbnail" src={`../assets/heroes/${heroeId}.jpg`} alt={superhero}/>
+            </div>
+            <div className="col-8">
+                <h3>{superhero}</h3>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item"><b>Alter edo: </b>{alter_ego}</li>
+                    <li className="list-group-item"><b>Publisher: </b>{publisher}</li>
+                    <li className="list-group-item"><b>First Appearance: </b>{first_appearance}</li>
+                </ul>
+                
+                <h5 >Characters</h5>
+                <p>{characters}</p>
+                <button onClick={handleReturn} className="btn btn-outline-info">Regresar</button>
+            </div>
+
+
         </div>
     )
 }
