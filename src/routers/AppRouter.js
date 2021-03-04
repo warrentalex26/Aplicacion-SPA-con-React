@@ -9,6 +9,7 @@ import { LoginScreen } from '../components/login/LoginScreen'
 import { Navbar } from '../components/ui/Navbar'
 import { DashboardRoutes } from './DashboardRoutes'
 import { PrivateRoute } from './PrivateRoute'
+import { PublicRoute } from './PublicRoutes'
 
 export const AppRouter = () => {
 
@@ -21,7 +22,7 @@ export const AppRouter = () => {
             <div>
                 {/* <Navbar/> */}
                 <Switch>
-                    <Route exact path='/login' component={LoginScreen}></Route>
+                    <PublicRoute exact path='/login' component={LoginScreen} isAuthenticated={user.logged}/>
                     <PrivateRoute path='/' component={DashboardRoutes} isAuthenticated={user.logged}/>
                 </Switch>
             </div>

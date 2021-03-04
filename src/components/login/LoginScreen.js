@@ -5,11 +5,12 @@ import { types } from '../../types/types';
 export const LoginScreen = ({history}) => {
 
     const {dispatch} = useContext(AuthContext);
-    console.log(dispatch.user)
 
     const handleLogin = (evento) => {
         // history.push('/')
         // history.replace('/')
+        history.replace('/')
+        
         dispatch({
             type: types.login,
             payload: {
@@ -17,7 +18,7 @@ export const LoginScreen = ({history}) => {
             }
         })
 
-        history.replace('/')
+        
     }
 
     return (
