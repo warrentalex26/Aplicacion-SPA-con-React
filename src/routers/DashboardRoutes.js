@@ -13,8 +13,6 @@ import { SearchScreen } from '../components/search/SearchScreen'
 
 export const DashboardRoutes = ({history}) => {
 
-    console.log(history)
-
     return (
         <>
             <Navbar history={history}/>
